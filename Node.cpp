@@ -7,4 +7,4 @@
 
 #include "Node.h"
 
-
+/* Only here in case I decide to make Node more complex */

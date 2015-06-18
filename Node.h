@@ -10,8 +10,9 @@
 #include <string>
 class Node {
 public:
-    std::string data;
-    Node *next = NULL;
+    //Treating this class as a struct, thus the members remain public.
+    std::string data;       // Data to hold in string 
+    Node *next = NULL;      // Pointer to the next node in the list
    // ~Node();
 private:
 

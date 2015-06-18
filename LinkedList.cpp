@@ -10,25 +10,28 @@
 void LinkedList::add(std::string n)
 {
     
-    if(isEmpty())
+    if(isEmpty()) //Empty case, create new node and set that as head
     {
         head = new Node; 
         head->data = n;
         size++;
     }
-    else
+    else // Standard case
     {
-        Node *search = head;
+        Node *search = head; //Helper node, find end of list 
+                             //(could just use a tail pointer)
         while(search->next != NULL)
         {
+            //this loop finds the end of the list
             search = search->next;
         }
-        Node *temp = new Node;
-        temp->data = n;
-        temp->next = NULL;
-        search->next = temp;
         
-        size++;
+        Node *temp = new Node; // Create a new node to add to the list
+        temp->data = n;        // Place correct data in the list
+        temp->next = NULL;     // Set next to NULL
+        search->next = temp;   // adds temp to the list
+        
+        size++; // Increment size
     }
 }
 void LinkedList::deleteItem(std::string s)
@@ -76,30 +79,38 @@ void LinkedList::deleteItem(std::string s)
             size--;
     }
 }
+// TODO can make this more efficient and organized better 
 Node *LinkedList::search(std::string s)
 {
-    Node *search = head;
-    bool notFound = true;
+    Node *search = head;  //Node to parse the list
+    bool notFound = true; // boolean to see if we found the string
     
+    //Loop through list
     for(int lcv = 0; lcv < size; lcv++)
     {
+        //check for data
         if(search->data == s)
         {
+            //If found exit loop and set notFound to false
             lcv = size;
             notFound = false;
         }
         else
         {
+            //if not found, move to the next member of list
             search = search->next;
         }
         
     }
+    //case to set return value to NULL if not found
     if(notFound)
     {
         search = NULL;
     }
+    
     return search;
 }
+//loop through the list and cout the data values
 void LinkedList::viewList()
 {
     Node *temp = head;
@@ -109,11 +120,14 @@ void LinkedList::viewList()
         temp = temp->next;
     }
 }
-//void LinkedList::reverseList();
+//void LinkedList::reverseList(); TODO IMPLEMENT THIS
+
+//returns true if the list is empty
 bool LinkedList::isEmpty()
 {
     return (head == NULL);
 }
+//Default Constructor
 LinkedList::LinkedList()
 {
     head = new Node;
